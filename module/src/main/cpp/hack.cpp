@@ -73,8 +73,8 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
 }
 
 
-void (*_get_IsEnable)(...);
-void get_IsEnable(void *instance)
+bool (*_get_IsEnable)(...);
+bool get_IsEnable(void *instance)
 {
     return true;
 }
