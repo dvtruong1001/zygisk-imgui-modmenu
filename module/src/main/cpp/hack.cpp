@@ -89,7 +89,7 @@ void hack_start(const char *_game_data_dir) {
 
     // TODO: hooking/patching here
 
-    HOOK_LIB("libil2cpp.so", "0xC05980", get_IsEnable, _get_IsEnable);
+    utils::hook((void *)getAbsoluteAddress("libil2cpp.so", 0xC05980), (void *)get_IsEnable, (void **)&_get_IsEnable);
     
     
 }
