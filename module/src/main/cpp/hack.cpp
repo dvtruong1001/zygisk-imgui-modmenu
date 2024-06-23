@@ -72,6 +72,13 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
     return old_eglSwapBuffers(dpy, surface);
 }
 
+
+void (*_get_IsEnable)(...);
+void get_IsEnable(void *instance)
+{
+    return true;
+}
+
 void hack_start(const char *_game_data_dir) {
     LOGI("hack start | %s", _game_data_dir);
     do {
@@ -81,6 +88,9 @@ void hack_start(const char *_game_data_dir) {
     LOGI("%s: %p - %p",TargetLibName, g_TargetModule.start_address, g_TargetModule.end_address);
 
     // TODO: hooking/patching here
+
+    HOOK_LIB("libil2cpp.so", "0xC05980", get_IsEnable, _get_IsEnable);
+    
     
 }
 
